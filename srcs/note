@@ -1,0 +1,15 @@
+int color;
+
+calcul color
+
+
+char red
+char blue
+char green
+
+color |= green << 1:
+color |= blue << 2
+color |= red << 3
+
+
+oooo
