@@ -6,7 +6,7 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 14:07:06 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/09 18:31:37 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 13:41:04 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,21 @@ static void	*mandel(void *env)
 	return (0);
 }
 
-int			set_mandel_thread(t_env *e)
+void		set_mandel_thread(t_env *e)
 {
-	pthread_t	thread[4];
-	t_env		tab[4];
+	pthread_t	thread[8];
+	t_env		tab[8];
 	int			i;
 
 	i = -1;
-	while (++i < 4)
+	while (++i < 8)
 	{
 		ft_memcpy((void*)&tab[i], (void*)e, sizeof(t_env));
 		tab[i].thr_data.pos = tab[i].thr_data.length * i;
 		if (pthread_create(&thread[i], NULL, mandel, &tab[i]))
-			return (-1);
+			mlx_close("failed to create thread", 2, e);
 	}
 	while (i--)
 		pthread_join(thread[i], NULL);
 	mlx_put_image_to_window(e->p.mlx, e->p.win, e->img.ptr, 0, 0);
-	return (0);
 }

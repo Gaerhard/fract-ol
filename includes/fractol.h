@@ -6,7 +6,7 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/23 13:20:02 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/09 18:31:13 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 13:40:44 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define FRACTOL_H
 # define JULIA 0
 # define MANDELBROT 1
+# define BURNING_SHIP 2
+# define MANDEL_2 3
 # include "mlx.h"
 # include <math.h>
 # include "pthread.h"
@@ -80,16 +82,25 @@ typedef struct			s_env
 }						t_env;
 
 void					init_mandel(t_env *env);
+void					init_mandel2(t_env *env);
+void					init_ship(t_env *env);
 void					init_julia(t_env *env);
 void					zoom_in(int mouse_x, int mouse_y, t_env *env);
 void					zoom_out(int mouse_x, int mouse_y, t_env *env);
+void					manual_color(int key, t_env *env);
 void					apply_color(int key, t_env *e);
 int						key_press(int key, t_env *env);
+int						key_press_2(int key, t_env *env);
 int						mouse_press(int button, int x, int y, t_env *env);
-int						mlx_close(t_env *env);
+int						mlx_close(char *str, int fd, t_env *env);
 int						mouse_move(int x, int y, t_env *env);
-int						set_mandel_thread(t_env *env);
-int						set_julia_thread(t_env *env);
+void					set_mandel_thread(t_env *env);
+void					set_mandel2_thread(t_env *env);
+void					set_julia_thread(t_env *env);
+void					set_ship_thread(t_env *env);
 int						color(double iter, t_env *e);
+int						free_all(char *str, int fd, t_env *e);
+void					init_fracts(char *str, t_env *e);
+void					redraw(t_env *env);
 
 #endif

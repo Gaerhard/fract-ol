@@ -6,57 +6,57 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:23:41 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/09 18:33:18 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 14:02:56 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int		mlx_close(t_env *env)
+int		mlx_close(char *str, int fd, t_env *env)
 {
-	(void)env;
+	free_all(str, fd, env);
 	exit(0);
 }
 
-void	redraw	(t_env *env)
+void	redraw(t_env *env)
 {
 	if (env->fractal == JULIA)
 		set_julia_thread(env);
 	else if (env->fractal == MANDELBROT)
 		set_mandel_thread(env);
+	else if (env->fractal == BURNING_SHIP)
+		set_ship_thread(env);
+	else if (env->fractal == MANDEL_2)
+		set_mandel2_thread(env);
 }
 
 int		key_press(int key, t_env *env)
 {
-	(void)env;
 	if (key == 53)
-		mlx_close(env);
+		mlx_close("exiting frat-ol", 1, env);
 	if ((key == 36) && env->fractal == JULIA)
 		env->modify *= -1;
-	if (key == 69 || key == 78)
-	{
-		env->misc.max_iteration += (key == 69) ? 10 : -10;
-		redraw(env);
-	}
-	if (key == 15)
+	if (key == 15 || key == 5 || key == 11)
+		manual_color(key, env);
+	if (key == 49)
 	{
 		if (env->fractal == JULIA)
 			init_julia(env);
 		else if (env->fractal == MANDELBROT)
 			init_mandel(env);
+		else if (env->fractal == BURNING_SHIP)
+			init_ship(env);
+		else if (env->fractal == MANDEL_2)
+			init_mandel2(env);
 		redraw(env);
 	}
 	if (key == 18 || key == 19 || key == 20 || key == 21)
-	{
 		apply_color(key, env);
-		redraw(env);
-	}
-	return (0);
+	return (key_press_2(key, env));
 }
 
 int		mouse_press(int button, int x, int y, t_env *env)
 {
-
 	if (button == 1 || button == 4)
 		zoom_in(x, y, env);
 	else if (button == 2 || button == 5)

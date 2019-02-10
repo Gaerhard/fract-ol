@@ -6,18 +6,20 @@
 #    By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 15:24:01 by gaerhard          #+#    #+#              #
-#    Updated: 2019/02/09 18:36:55 by gaerhard         ###   ########.fr        #
+#    Updated: 2019/02/10 13:07:38 by gaerhard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 SRC_DIR = srcs/
-RAW = main.c events.c init_fracts.c zoom.c mandelbrot.c julia.c utils.c
+RAW = main.c events.c init_fracts.c zoom.c mandelbrot.c julia.c utils.c \
+	  burning_ship.c events2.c mandel2.c
 SRC = $(addprefix $(SRC_DIR), $(RAW))
 OBJ = $(SRC:.c=.o)
 LIB = libft/libft.a
 INCLUDES = includes
 CFLAGS = -Wall -Wextra -Werror -I $(INCLUDES) -O3 -flto
+DEBUG = -g3 -fsanitize=address
 MLXFLAGS = -lmlx -framework OPENgL -framework AppKit
 RED := "\033[0;31m"
 GREEN := "\033[0;32m"
@@ -50,5 +52,9 @@ relib:
 fclean_lib:
 	@make fclean -C libft
 
+debug: lib $(OBJ) $(LIB)
+	@gcc $(CFLAGS) $(DEBUG) $(MLXFLAGS) $(OBJ) $(LIB) -o $(NAME)
+	@echo ${GREEN}"[INFO] Compiled [$(NAME)] executable successfully!"${RESET}
+
 .SILENT: $(OBJ) $(LIB)
-.PHONY: fclean all clean lib relib fclean_lib
+.PHONY: fclean all clean lib relib fclean_lib debug

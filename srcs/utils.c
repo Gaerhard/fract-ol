@@ -6,7 +6,7 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 18:19:05 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/09 18:58:06 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 14:05:30 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int		color(double iter, t_env *e)
 {
-	char red;
-	char green;
-	char blue;
-	int color;
+	char	red;
+	char	green;
+	char	blue;
+	int		color;
 
 	red = 255 * cos(iter * e->col.red);
 	green = 255 * cos(iter * e->col.green);
@@ -44,19 +44,31 @@ void	apply_color(int key, t_env *e)
 	}
 	if (key == 20)
 	{
-		e->col.red = 0.01;
+		e->col.red = 0.03;
 		e->col.green = 0.02;
-		e->col.blue = 0.03;
+		e->col.blue = 0.01;
 	}
 	if (key == 21)
 	{
-		e->col.red = 0.01;
-		e->col.green = 0.02;
-		e->col.blue = 0.03;
+		e->col.red = 0.05;
+		e->col.green = 0.06;
+		e->col.blue = 0.04;
 	}
+	redraw(e);
 }
 
-int		free_all(t_env *e)
+void	manual_color(int key, t_env *e)
+{
+	if (key == 15)
+		e->col.red += 0.01;
+	if (key == 5)
+		e->col.blue += 0.01;
+	if (key == 11)
+		e->col.green += 0.01;
+	redraw(e);
+}
+
+int		free_all(char *str, int fd, t_env *e)
 {
 	if (e->img.ptr)
 		mlx_destroy_image(e->p.mlx, e->img.ptr);
@@ -64,5 +76,6 @@ int		free_all(t_env *e)
 		mlx_destroy_window(e->p.mlx, e->p.win);
 	if (e)
 		free(e);
+	ft_putendl_fd(str, fd);
 	return (0);
 }

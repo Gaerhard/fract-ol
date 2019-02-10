@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   julia.c                                            :+:      :+:    :+:   */
+/*   burning_ship.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/09 18:00:15 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/10 13:41:14 by gaerhard         ###   ########.fr       */
+/*   Created: 2019/02/10 14:02:29 by gaerhard          #+#    #+#             */
+/*   Updated: 2019/02/10 14:02:37 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void	calc_julia(t_env *e, double x, double y)
+static void	calc_ship(t_env *e, double x, double y)
 {
 	double i;
 	double tmp;
@@ -20,15 +20,17 @@ static void	calc_julia(t_env *e, double x, double y)
 	double sqzi;
 
 	i = 0;
-	e->z.r = x / e->misc.zoom + e->misc.x1;
-	e->z.i = y / e->misc.zoom + e->misc.y1;
+	e->c.r = x / e->misc.zoom + e->misc.x1;
+	e->c.i = y / e->misc.zoom + e->misc.y1;
+	e->z.r = 0;
+	e->z.i = 0;
 	sqzr = e->z.r * e->z.r;
 	sqzi = e->z.i * e->z.i;
 	while (i < e->misc.max_iteration && sqzr + sqzi < 4)
 	{
 		tmp = e->z.r;
-		e->z.r = sqzr - sqzi + e->c.r;
-		e->z.i = 2 * e->z.i * tmp + e->c.i;
+		e->z.r = fabs(sqzr - sqzi + e->c.r);
+		e->z.i = fabs(2 * e->z.i * tmp + e->c.i);
 		sqzr = e->z.r * e->z.r;
 		sqzi = e->z.i * e->z.i;
 		i++;
@@ -36,7 +38,7 @@ static void	calc_julia(t_env *e, double x, double y)
 	e->img.data[(int)y * e->width + (int)x] = color(i, e);
 }
 
-static void	*julia(void *env)
+static void	*ship(void *env)
 {
 	double	x;
 	double	y;
@@ -48,23 +50,23 @@ static void	*julia(void *env)
 	{
 		x = -1;
 		while (++x < data->width)
-			calc_julia(data, x, y);
+			calc_ship(data, x, y);
 	}
 	return (0);
 }
 
-void		set_julia_thread(t_env *e)
+void		set_ship_thread(t_env *e)
 {
-	pthread_t	thread[9];
-	t_env		tab[9];
+	pthread_t	thread[8];
+	t_env		tab[8];
 	int			i;
 
 	i = -1;
-	while (++i < 9)
+	while (++i < 8)
 	{
 		ft_memcpy((void*)&tab[i], (void*)e, sizeof(t_env));
 		tab[i].thr_data.pos = tab[i].thr_data.length * i;
-		if (pthread_create(&thread[i], NULL, julia, &tab[i]))
+		if (pthread_create(&thread[i], NULL, ship, &tab[i]))
 			mlx_close("failed to create thread", 2, e);
 	}
 	while (i--)
