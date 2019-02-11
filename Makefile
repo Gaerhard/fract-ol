@@ -6,14 +6,14 @@
 #    By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/29 15:24:01 by gaerhard          #+#    #+#              #
-#    Updated: 2019/02/10 13:07:38 by gaerhard         ###   ########.fr        #
+#    Updated: 2019/02/10 15:17:47 by gaerhard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 SRC_DIR = srcs/
 RAW = main.c events.c init_fracts.c zoom.c mandelbrot.c julia.c utils.c \
-	  burning_ship.c events2.c mandel2.c
+	  burning_ship.c events2.c mandel2.c mandel4.c init_fracts2.c
 SRC = $(addprefix $(SRC_DIR), $(RAW))
 OBJ = $(SRC:.c=.o)
 LIB = libft/libft.a

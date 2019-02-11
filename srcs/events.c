@@ -6,7 +6,7 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/24 13:23:41 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/10 14:02:56 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 15:16:36 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	redraw(t_env *env)
 		set_ship_thread(env);
 	else if (env->fractal == MANDEL_2)
 		set_mandel2_thread(env);
+	else if (env->fractal == MANDEL_4)
+		set_mandel4_thread(env);
 }
 
 int		key_press(int key, t_env *env)

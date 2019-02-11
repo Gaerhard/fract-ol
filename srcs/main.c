@@ -6,11 +6,17 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/22 18:04:37 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/10 14:03:33 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/02/10 15:47:12 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+static int	mlx_red_close(t_env *e)
+{
+	mlx_close("exiting fract-ol", 2, e);
+	return (0);
+}
 
 static void	init(t_env *e, char *av)
 {
@@ -27,27 +33,8 @@ static void	init(t_env *e, char *av)
 	apply_color(19, e);
 }
 
-static char	*usage(void)
+static void	set_thread(t_env *e)
 {
-	char *str;
-
-	str = "usage: ./fractol param\nmandelbrot\njulia\nmandel2\nship";
-	return (str);
-}
-
-int			main(int argc, char **av)
-{
-	t_env *e;
-
-	if (argc != 2)
-		return (ft_print_return("Wrong number of arguments", 2));
-	if (!(e = malloc(sizeof(*e))))
-		return (ft_print_return("Failed to allocate memory", 2));
-	if (!ft_strequ(av[1], "julia") && !ft_strequ(av[1], "mandelbrot")
-		&& !ft_strequ(av[1], "ship") && !ft_strequ(av[1], "mandel2"))
-		return (ft_free_return(usage(), 2, e));
-	init_fracts(av[1], e);
-	init(e, av[1]);
 	if (e->fractal == JULIA)
 		set_julia_thread(e);
 	else if (e->fractal == MANDELBROT)
@@ -56,9 +43,36 @@ int			main(int argc, char **av)
 		set_ship_thread(e);
 	else if (e->fractal == MANDEL_2)
 		set_mandel2_thread(e);
+	else if (e->fractal == MANDEL_4)
+		set_mandel4_thread(e);
+}
+
+static char	*usage(void)
+{
+	char *str;
+
+	str = "usage: ./fractol param\nmandelbrot\njulia\nmandel2\nship\nmandel4";
+	return (str);
+}
+
+int			main(int argc, char **av)
+{
+	t_env *e;
+
+	if (argc != 2)
+		return (ft_print_return(usage(), 2));
+	if (!(e = malloc(sizeof(*e))))
+		return (ft_print_return("Failed to allocate memory", 2));
+	if (!ft_strequ(av[1], "julia") && !ft_strequ(av[1], "mandelbrot")
+		&& !ft_strequ(av[1], "ship") && !ft_strequ(av[1], "mandel2")
+		&& !ft_strequ(av[1], "mandel4"))
+		return (ft_free_return(usage(), 2, e));
+	init_fracts(av[1], e);
+	init(e, av[1]);
+	set_thread(e);
 	mlx_hook(e->p.win, 2, 0, key_press, e);
 	mlx_hook(e->p.win, 6, 0, mouse_move, e);
 	mlx_hook(e->p.win, 4, 0, mouse_press, e);
-	mlx_hook(e->p.win, 17, 0, mlx_close, e);
+	mlx_hook(e->p.win, 17, 0, mlx_red_close, e);
 	mlx_loop(e->p.mlx);
 }
