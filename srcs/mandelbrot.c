@@ -6,7 +6,7 @@
 /*   By: gaerhard <gaerhard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 14:07:06 by gaerhard          #+#    #+#             */
-/*   Updated: 2019/02/10 15:19:48 by gaerhard         ###   ########.fr       */
+/*   Updated: 2019/03/25 19:00:51 by gaerhard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		set_mandel_thread(t_env *e)
 	i = -1;
 	while (++i < 8)
 	{
-		ft_memcpy((void*)&tab[i], (void*)e, sizeof(t_env));
+		ft_memcpy(&tab[i], e, sizeof(t_env));
 		tab[i].thr_data.pos = tab[i].thr_data.length * i;
 		if (pthread_create(&thread[i], NULL, mandel, &tab[i]))
 			mlx_close("failed to create thread", 2, e);
