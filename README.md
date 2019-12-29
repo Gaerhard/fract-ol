@@ -30,7 +30,7 @@ Run one of the following commands
 
 ### Features
 
-* Five different fractals Mandelbrot, Julia, Burning-Ship, Mandelbrot power 2 3 and 4
+* Five different fractals Julia, Burning-Ship, Mandelbrot power 2 3 and 4
 * Fractal movement
 ```
 ⇦ ⇨ ⇧ ⇩
@@ -46,6 +46,14 @@ R G B keys
 * Color presets
 ```
 ⓵ ⓶ ⓷ ⓸
+```
+* Fractal variation (only with Julia)
+```
+Enter + move mouse
+```
+* Reset
+```
+Spacebar
 ```
 
 ##### Author
