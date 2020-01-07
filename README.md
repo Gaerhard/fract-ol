@@ -56,5 +56,9 @@ Enter + move mouse
 Spacebar
 ```
 
+### Screenshots
+
+![oops something went wrong, try to check on https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png](https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png)
+
 ##### Author
 Gabriel Erhard
