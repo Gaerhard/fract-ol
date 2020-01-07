@@ -57,14 +57,10 @@ Spacebar
 ```
 
 ### Screenshots
-##### Mandelbrot
-<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png" width="256" height="256" title="Mandelbrot">
-
-##### Julia
-<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_1.png" width="256" height="256" title="Julia1"> <img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_2.png" width="256" height="256" title="Julia2">
-
-##### Burning Ship
-<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Burning_ship.png" width="256" height="256" title="Burning_ship.png">
+| Mandelbrot | Julia | Burning Ship|
+|------------|-------|-------------|
+|<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png" width="256" height="256" title="Mandelbrot">|<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_1.png" width="256" height="256" title="Julia1">|<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Burning_ship.png" width="256" height="256" title="Burning_ship.png">|
+||<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_2.png" width="256" height="256" title="Julia2">||
 
 ### Author
 Gabriel Erhard
