@@ -57,8 +57,14 @@ Spacebar
 ```
 
 ### Screenshots
+##### Mandelbrot
+<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png" width="256" height="256" title="Mandelbrot">
 
-![oops something went wrong, try to check on https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png](https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/mandelbrot.png)
+##### Julia
+<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_1.png" width="256" height="256" title="Julia1"> <img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Julia_2.png" width="256" height="256" title="Julia2">
 
-##### Author
+##### Burning Ship
+<img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Burning_ship.png" width="256" height="256" title="Burning_ship.png">
+
+#### Author
 Gabriel Erhard
