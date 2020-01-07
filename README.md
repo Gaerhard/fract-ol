@@ -66,5 +66,5 @@ Spacebar
 ##### Burning Ship
 <img src="https://raw.githubusercontent.com/erhardschi/fract-ol/master/screenshots/Burning_ship.png" width="256" height="256" title="Burning_ship.png">
 
-#### Author
+### Author
 Gabriel Erhard
