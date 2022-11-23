@@ -1,4 +1,4 @@
-# FRACT-OL
+# FRACT-OL [![gaerhard's 42 Fract'ol Score](https://badge42.vercel.app/api/v2/clatwxbni01060fmdfe7xoii0/project/1182108)](https://github.com/JaeSeoKim/badge42)
 Fract-ol project from 42 school. The goal of the project is to represent different
 fractals.
 
